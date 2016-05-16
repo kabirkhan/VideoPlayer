@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--PlayerVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="PlayerVC" customModule="StreamingVideo_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="qKD-Jj-Iw4">
+                                <rect key="frame" x="18" y="520" width="564" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="mny-Ej-QJ1"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="timeSliderValueDidChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="fNW-l3-Pfk"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C43-1h-HFu">
+                                <rect key="frame" x="20" y="499" width="50" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="dhc-V3-hax"/>
+                                    <constraint firstAttribute="width" constant="50" id="uRB-f9-zyT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dy-yr-x6H">
+                                <rect key="frame" x="537" y="499" width="43" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="jDT-Vp-8Kb"/>
+                                    <constraint firstAttribute="width" constant="43" id="x3s-37-Ide"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="usp-fI-dTR">
+                                <rect key="frame" x="207" y="554" width="187" height="38"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3J-Xd-FBn">
+                                        <rect key="frame" x="0.0" y="0.0" width="37" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="37" id="4Jv-zl-VpU"/>
+                                            <constraint firstAttribute="height" constant="27" id="ov3-kS-JDq"/>
+                                        </constraints>
+                                        <state key="normal" image="rewind"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="4Jv-zl-VpU"/>
+                                                <exclude reference="ov3-kS-JDq"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="rewindButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ISL-Yz-DJM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzT-IN-ZW5">
+                                        <rect key="frame" x="77" y="0.0" width="33" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="Ghg-BJ-N1x"/>
+                                            <constraint firstAttribute="width" constant="84" id="kUd-ar-0Dl"/>
+                                            <constraint firstAttribute="height" constant="38" id="x3Z-Xc-dbb"/>
+                                        </constraints>
+                                        <state key="normal" image="play"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Ghg-BJ-N1x"/>
+                                                <exclude reference="kUd-ar-0Dl"/>
+                                                <exclude reference="x3Z-Xc-dbb"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="playPauseButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NbS-be-3qA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhM-ky-Jrv">
+                                        <rect key="frame" x="150" y="0.0" width="37" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="37" id="JwD-L2-15I"/>
+                                            <constraint firstAttribute="height" constant="27" id="n0W-cT-l4D"/>
+                                        </constraints>
+                                        <state key="normal" image="fastforward"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="JwD-L2-15I"/>
+                                                <exclude reference="n0W-cT-l4D"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="fastForwardButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="25q-p9-55o"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c7Y-oQ-IRm" customClass="PlayerView" customModule="StreamingVideo_Demo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="600" height="459"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="C43-1h-HFu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="12S-Cp-Rrm"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="c7Y-oQ-IRm" secondAttribute="bottom" id="2xH-82-brQ"/>
+                            <constraint firstItem="qKD-Jj-Iw4" firstAttribute="top" secondItem="5dy-yr-x6H" secondAttribute="bottom" id="8XJ-ld-4c2"/>
+                            <constraint firstAttribute="trailing" secondItem="c7Y-oQ-IRm" secondAttribute="trailing" id="AAZ-1I-rsM"/>
+                            <constraint firstItem="c7Y-oQ-IRm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="HcZ-ni-Aws"/>
+                            <constraint firstItem="c7Y-oQ-IRm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="UIG-Hs-fgt"/>
+                            <constraint firstItem="qKD-Jj-Iw4" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Wb5-aa-FbA"/>
+                            <constraint firstItem="qKD-Jj-Iw4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="XYm-HM-6FX"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="usp-fI-dTR" secondAttribute="bottom" constant="8" id="XpH-2B-q7e"/>
+                            <constraint firstItem="usp-fI-dTR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Z3q-xP-JMv"/>
+                            <constraint firstItem="5dy-yr-x6H" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="r2q-S3-gdq"/>
+                            <constraint firstItem="5dy-yr-x6H" firstAttribute="top" secondItem="c7Y-oQ-IRm" secondAttribute="bottom" constant="20" id="sNr-uZ-kBb"/>
+                            <constraint firstItem="qKD-Jj-Iw4" firstAttribute="top" secondItem="C43-1h-HFu" secondAttribute="bottom" id="u1H-fZ-t0g"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qKD-Jj-Iw4" secondAttribute="bottom" constant="50" id="ue2-FF-JZP"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2xH-82-brQ"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="2xH-82-brQ"/>
+                                <exclude reference="sNr-uZ-kBb"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="durationLabel" destination="5dy-yr-x6H" id="US8-hB-PWg"/>
+                        <outlet property="fastforwardButton" destination="LhM-ky-Jrv" id="C4q-4M-Scz"/>
+                        <outlet property="mediaPlayerView" destination="c7Y-oQ-IRm" id="u2R-Bs-yli"/>
+                        <outlet property="playButton" destination="pzT-IN-ZW5" id="mcN-gg-mdP"/>
+                        <outlet property="rewindButton" destination="X3J-Xd-FBn" id="hCQ-oJ-QAI"/>
+                        <outlet property="startTimeLabel" destination="C43-1h-HFu" id="YmX-rA-S75"/>
+                        <outlet property="timeSlider" destination="qKD-Jj-Iw4" id="AN0-0t-Wnc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="280" y="339"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="fastforward" width="37" height="27"/>
+        <image name="play" width="33" height="38"/>
+        <image name="rewind" width="37" height="26"/>
+    </resources>
+</document>
