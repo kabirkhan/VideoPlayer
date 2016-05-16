@@ -14,6 +14,7 @@ private var mediaPlayerViewControllerKVOContext = 0
 
 class PlayerVC: UIViewController {
     
+    
     //MARK: - IBOutlets
     @IBOutlet weak var timeSlider: UISlider!
     @IBOutlet weak var startTimeLabel: UILabel!
@@ -23,8 +24,8 @@ class PlayerVC: UIViewController {
     @IBOutlet weak var fastforwardButton: UIButton!
     @IBOutlet weak var mediaPlayerView: PlayerView!
     
-    //MARK: - Properties
     
+    // MARK: - Properties
     let player = AVPlayer()
     
     static let keysRequiredToPlay = [
@@ -42,6 +43,10 @@ class PlayerVC: UIViewController {
         }
     }
     
+    var currentTimeAsString: String {
+        return formatTimeAsString(currentTime)
+    }
+    
     var duration: Double {
         if let currentItem = player.currentItem {
             return CMTimeGetSeconds(currentItem.duration)
@@ -50,6 +55,10 @@ class PlayerVC: UIViewController {
         }
     }
     
+    var timeLeftAsString: String {
+        return formatTimeAsString(duration - currentTime)
+    }
+
     var playbackRate: Float {
         get {
             return player.rate
@@ -82,7 +91,7 @@ class PlayerVC: UIViewController {
     }
     
     
-    //MARK: - VC
+    // MARK: - VC
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -91,8 +100,9 @@ class PlayerVC: UIViewController {
         addObserver(self, forKeyPath: "player.rate", options: [.New, .Initial], context: &mediaPlayerViewControllerKVOContext)
         
         mediaPlayerView.mediaPlayerLayer.player = player
-        
-        guard let lessonURL = NSURL(string: "https://s3-us-west-2.amazonaws.com/devslopesvideo/tvOS-custom-view-focus.mp4") else {
+       
+        // CHANGE THIS URL
+        guard let lessonURL = NSURL(string: "https://s3-us-west-2.amazonaws.com/demovideosforvideoplayertest/Stephen_Curry_Highlights.mp4") else {
             let message = "Error with lessonURL"
             self.showAlert(message)
             return
@@ -103,6 +113,8 @@ class PlayerVC: UIViewController {
         let interval = CMTimeMake(1, 1)
         timeToken = player.addPeriodicTimeObserverForInterval(interval, queue: dispatch_get_main_queue(), usingBlock: { time in
             self.timeSlider?.value = Float(CMTimeGetSeconds(time))
+            self.startTimeLabel.text = self.currentTimeAsString
+            self.durationLabel.text = self.timeLeftAsString
         })
     }
     
@@ -119,11 +131,10 @@ class PlayerVC: UIViewController {
         self.removeObserver(self, forKeyPath: "player.currentItem.status", context: &mediaPlayerViewControllerKVOContext)
         self.removeObserver(self, forKeyPath: "player.currentItem.duration", context: &mediaPlayerViewControllerKVOContext)
         self.removeObserver(self, forKeyPath: "player.rate", context: &mediaPlayerViewControllerKVOContext)
-        
     }
     
     
-    //MARK: - Media Loading
+    // MARK: - Media Loading
     func asyncLoadURLAsset(asset: AVURLAsset) {
         asset.loadValuesAsynchronouslyForKeys(PlayerVC.keysRequiredToPlay) {
             
@@ -139,9 +150,8 @@ class PlayerVC: UIViewController {
                             return
                         }
                     }
-                    
                     self.mediaPlayerItem = AVPlayerItem(asset: asset)
-                    
+                    self.player.play()
                 } else {
                     return
                 }
@@ -150,7 +160,7 @@ class PlayerVC: UIViewController {
     }
     
     
-    //MARK: - IBActions
+    // MARK: - IBActions
     @IBAction func playPauseButtonTapped(sender: UIButton) {
         if player.rate != 1.0 {
             if currentTime == duration {
@@ -176,7 +186,7 @@ class PlayerVC: UIViewController {
     }
     
     
-    //MARK: - KVO
+    // MARK: - KVO
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         guard context == &mediaPlayerViewControllerKVOContext else {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
@@ -204,7 +214,6 @@ class PlayerVC: UIViewController {
             durationLabel.enabled = isValidDuration
             
             let wholeMinutes = Int(trunc(newDurationSecs / 60))
-            
             durationLabel.text = String(format:"%d:%02d", wholeMinutes, Int(trunc(newDurationSecs)) - wholeMinutes * 60)
             
         } else if keyPath == "player.currentItem.status" {
@@ -236,7 +245,7 @@ class PlayerVC: UIViewController {
         return affectedKeyPathsMappingByKey[key] ?? super.keyPathsForValuesAffectingValueForKey(key)
     }
     
-    //MARK: - Alert on Error
+    // MARK: - Helper Functions
     func showAlert(message: String, error: NSError? = nil) {
         var alertMessage: String
         if error != nil {
@@ -252,4 +261,8 @@ class PlayerVC: UIViewController {
         
     }
     
+    func formatTimeAsString(time: Double) -> String {
+        let minutes = Int(trunc(time / 60))
+        return String(format:"%d:%02d", minutes, Int(trunc(time)) - minutes * 60)
+    }
 }
