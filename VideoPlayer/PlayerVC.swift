@@ -26,6 +26,10 @@ class PlayerVC: UIViewController {
     
     
     // MARK: - Properties
+    
+    // CHANGE THIS URL
+    let url = "https://s3-us-west-2.amazonaws.com/demovideosforvideoplayertest/Stephen_Curry_Highlights.mp4"
+    
     let player = AVPlayer()
     
     static let keysRequiredToPlay = [
@@ -101,8 +105,7 @@ class PlayerVC: UIViewController {
         
         mediaPlayerView.mediaPlayerLayer.player = player
        
-        // CHANGE THIS URL
-        guard let lessonURL = NSURL(string: "https://s3-us-west-2.amazonaws.com/demovideosforvideoplayertest/Stephen_Curry_Highlights.mp4") else {
+        guard let lessonURL = NSURL(string: url) else {
             let message = "Error with lessonURL"
             self.showAlert(message)
             return
